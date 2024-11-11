@@ -1,0 +1,49 @@
+{
+        "name": "qp",
+        "version": "0.0.5",
+        "containers": [
+            {
+                "name": "qp",
+                "image": {
+                    "registry": "nexus3.o-ran-sc.org:10002",
+                    "name": "o-ran-sc/ric-app-qp",
+                    "tag": "0.0.5"
+                }
+            }
+        ],
+        "messaging": {
+            "ports": [
+                {
+                    "name": "rmr-data",
+                    "container": "qp",
+                    "port": 4560,
+                    "rxMessages": ["TS_UE_LIST"],
+                    "txMessages": ["TS_QOE_PREDICTION"],
+                    "policies": [],
+                    "description": "rmr receive data port for qp"
+                },
+                {
+                    "name": "rmr-route",
+                    "container": "qp",
+                    "port": 4561,
+                    "description": "rmr route port for qp"
+                }
+            ]
+        },
+        "rmr": {
+            "protPort": "tcp:4560",
+            "maxSize": 2072,
+            "numWorkers": 1,
+            "rxMessages": ["TS_UE_LIST"],
+            "txMessages": ["TS_QOE_PREDICTION"],
+            "policies": []
+        },
+	"influxDB": {
+            "influxDBAdress": "http://r4-influxdb-influxdb2.ricplt:80",
+            "username": "admin",
+            "password": "7jQCNdujbSKju7cL32IzOOwAx7rEjEGJ",
+            "token": "Kq28XHGrsUXjssxM1FyrchTuNSZOqSjT",
+            "organization": "my-org",
+            "bucket": "kpimon"
+        }
+}

@@ -1,0 +1,3 @@
+# static route table to direct messages sent by mock QP xApp
+newrt|start
+newrt|end
